@@ -227,7 +227,7 @@ pipeline {
         branch 'master'
       }
         tools {
-        jdk "JDK9" 
+        jdk "JDK11" 
       }
 
       environment{
