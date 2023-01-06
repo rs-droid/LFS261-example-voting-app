@@ -242,7 +242,11 @@ pipeline {
       }
     }
 
-    sleep(10)
+            sleep(10)
+            qualitygate = waitForQualityGate()
+    if (qualitygate.status != "OK") {
+      ...
+    }
 
     stage("Quality Gate") {
         steps {
