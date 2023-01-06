@@ -251,8 +251,9 @@ pipeline {
                 waitForQualityGate abortPipeline: true         
             sleep(10)
             qualitygate = waitForQualityGate()
-            if (qualitygate.status != "OK")
+              if (qualitygate.status != "OK") {
             }
+          }  
         }
     }
 
