@@ -242,6 +242,10 @@ pipeline {
       }
     }
 
+    sleep(10)
+            qualitygate = waitForQualityGate()
+              if (qualitygate.status != "OK") {
+            }
 
     stage("Quality Gate") {
         steps {
@@ -249,11 +253,7 @@ pipeline {
                 // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
                 // true = set pipeline to UNSTABLE, false = don't
                 waitForQualityGate abortPipeline: true         
-            sleep(10)
-            qualitygate = waitForQualityGate()
-              if (qualitygate.status != "OK") {
-            }
-          }  
+            }  
         }
     }
 
