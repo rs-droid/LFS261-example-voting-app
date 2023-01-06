@@ -226,7 +226,7 @@ pipeline {
       when{
         branch 'master'
       }
-        tools {
+      tools {
         jdk "JDK11" 
       }
 
