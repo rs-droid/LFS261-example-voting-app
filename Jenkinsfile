@@ -242,7 +242,6 @@ pipeline {
             sleep(10)
             qualitygate = waitForQualityGate()
             if (qualitygate.status != "OK") 
-           }
     }
 
 
