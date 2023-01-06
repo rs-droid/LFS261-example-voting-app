@@ -226,7 +226,7 @@ pipeline {
       when{
         branch 'master'
       }
-      tools {
+        tools {
         jdk "JDK11" 
       }
 
@@ -239,9 +239,7 @@ pipeline {
             withSonarQubeEnv('sonar-instavote') {
               sh "${sonarpath}/bin/sonar-scanner -Dproject.settings=sonar-project.properties -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400"
             }
-            sleep(10)
-            qualitygate = waitForQualityGate()
-            if (qualitygate.status != "OK") 
+      }
     }
 
 
@@ -250,10 +248,14 @@ pipeline {
             timeout(time: 1, unit: 'HOURS') {
                 // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
                 // true = set pipeline to UNSTABLE, false = don't
-                waitForQualityGate abortPipeline: true
+                waitForQualityGate abortPipeline: true         
+            sleep(10)
+            qualitygate = waitForQualityGate()
+            if (qualitygate.status != "OK")
             }
         }
     }
+
 
     stage('deploy to dev') {
       agent any
